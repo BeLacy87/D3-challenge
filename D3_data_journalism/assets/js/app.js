@@ -144,15 +144,40 @@ function makeResponsive() {
       .attr("cx", d => xLinearScale(d[chosenXAxis]))
       .attr("cy", d => yLinearScale(d[chosenYAxis]))
       .attr("r",10)
+      .attr("opacity", ".5")
+      .append("text")
+      .text(function(d){return d.abbr})
+      .attr("dx", d => xLinearScale(d[chosenXAxis]))
+      .attr("dy", d => yLinearScale(d[chosenYAxis]))
       
-      .attr("opacity", ".5");
-      // circlesGroup.append("text")
+      // .text(function(d){return d.abbr})
+
+    // chartGroup.selectAll("text")
+    //   .data(healthData)
+    //   .enter()
+    //   .append("text")
+    //   .text(function(d) {
+    //     return d.abbr;
+    //   })
+    //   .attr("x", function(d) {
+    //   return d[0];
+    //   })
+    //   .attr("y", function(d) {
+    //   return d[1];
+    //   })
+    //   .attr("font-family", "sans-serif")
+    //   .attr("font-size", "11px")
+    //   .attr("fill", "red");
+
+      // chartGroup.selectAll("text")
       // .data(healthData)
       // .enter()
       // .append("text")
-      // .attr("cx", d => xLinearScale(d[chosenXAxis]))
-      // .attr("cy", d => yLinearScale(d[chosenYAxis]))  
-      circlesGroup.text(function(d){return d.abbr})
+      // .text(function(d){return d.abbr})
+      // .attr("dx", d => xLinearScale(d[chosenXAxis]))
+      // .attr("dy", d => yLinearScale(d[chosenYAxis]))  
+
+    
   
    //labels for X axis  
     var labelsGroup = chartGroup.append("g")
