@@ -66,13 +66,25 @@ function makeResponsive() {
       .attr("cx", d => newXScale(d[chosenXAxis]))   
     return circlesGroup;
   }
+  function renderXText(textGroup, newXScale, chosenXAxis) {
+    textGroup.transition()
+      .duration(1000)
+      .attr("x", d => newXScale(d[chosenXAxis]))   
+    return textGroup;
+  }
   function renderYCircles(circlesGroup, newYScale, chosenYAxis) {
     circlesGroup.transition()
       .duration(1000)
       .attr("cy", d => newYScale(d[chosenYAxis]))   
     return circlesGroup;
   }
-  function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
+  function renderYText(textGroup, newYScale, chosenYAxis) {
+    textGroup.transition()
+      .duration(1000)
+      .attr("y", d => newYScale(d[chosenYAxis]))   
+    return textGroup;
+  }
+  function updateToolTip(chosenXAxis, chosenYAxis, textGroup) {
     var xlabel;
     if (chosenXAxis === "poverty") {
       xlabel = "% in poverty: ";
@@ -100,15 +112,15 @@ function makeResponsive() {
       return (`${d.state}<br>${ylabel}${d[chosenYAxis]}<br>${xlabel}${d[chosenXAxis]}`);
     });
 
-    circlesGroup.call(toolTip);
-      circlesGroup
+    textGroup.call(toolTip);
+      textGroup
       .on("mouseover", function(data) {
           toolTip.show(data);
         })
       .on("mouseout", function(data) {
             toolTip.hide(data);
           });
-    return circlesGroup;
+    return textGroup;
   ;
   }
   
@@ -145,37 +157,20 @@ function makeResponsive() {
       .attr("cy", d => yLinearScale(d[chosenYAxis]))
       .attr("r",10)
       .attr("opacity", ".5")
+
+    var textGroup = chartGroup.append("g")
+      .selectAll("text")
+      .data(healthData)
+      .enter()
       .append("text")
-      .text(function(d){return d.abbr})
-      .attr("dx", d => xLinearScale(d[chosenXAxis]))
-      .attr("dy", d => yLinearScale(d[chosenYAxis]))
-      
-      // .text(function(d){return d.abbr})
-
-    // chartGroup.selectAll("text")
-    //   .data(healthData)
-    //   .enter()
-    //   .append("text")
-    //   .text(function(d) {
-    //     return d.abbr;
-    //   })
-    //   .attr("x", function(d) {
-    //   return d[0];
-    //   })
-    //   .attr("y", function(d) {
-    //   return d[1];
-    //   })
-    //   .attr("font-family", "sans-serif")
-    //   .attr("font-size", "11px")
-    //   .attr("fill", "red");
-
-      // chartGroup.selectAll("text")
-      // .data(healthData)
-      // .enter()
-      // .append("text")
-      // .text(function(d){return d.abbr})
-      // .attr("dx", d => xLinearScale(d[chosenXAxis]))
-      // .attr("dy", d => yLinearScale(d[chosenYAxis]))  
+      .attr("class", "stateText")
+      .attr('x', d => xLinearScale(d[chosenXAxis]))
+      .attr('y', d => yLinearScale(d[chosenYAxis]))
+      .attr("dy", ".35em")
+      .attr("text-anchor", "middle")
+      .attr("font-size", 10)
+      .text(d => d.abbr)
+      console.log(textGroup)
 
     
   
@@ -214,7 +209,7 @@ function makeResponsive() {
           .attr("x", 0).attr("y", 60).attr("value", "healthcare") 
           .classed("inactive", true)
           .text("Lacks Healthcare (%)");
-      var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
+      var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, textGroup);
   
       function use_x(value) {
           chosenXAxis = value;
@@ -222,6 +217,8 @@ function makeResponsive() {
           xAxis = renderAxes(xLinearScale, xAxis);
           circlesGroup = renderXCircles(circlesGroup, xLinearScale, chosenXAxis);
           circlesGroup= updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
+          textGroup = renderXText(textGroup, xLinearScale, chosenXAxis);
+          textGroup= updateToolTip(chosenXAxis, chosenYAxis, textGroup);
           if (chosenXAxis === "poverty") {
             povertyLabel
               .classed("active", true).classed("inactive", false);
@@ -248,11 +245,13 @@ function makeResponsive() {
       }
   
       function use_y(value) {
-    chosenYAxis = value;
+      chosenYAxis = value;
           yLinearScale = yScale(healthData, chosenYAxis);
           yAxis = renderYAxes(yLinearScale, yAxis);
           circlesGroup = renderYCircles(circlesGroup, yLinearScale, chosenYAxis);
           circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
+          textGroup = renderYText(textGroup, yLinearScale, chosenYAxis);
+          textGroup = updateToolTip(chosenXAxis, chosenYAxis, textGroup);
           if (chosenYAxis === "obesity") {
             obesityLabel
               .classed("active", true).classed("inactive", false);
@@ -343,9 +342,11 @@ function makeResponsive() {
         return (`${d.state}<br>${ylabel}${d[chosenYAxis]}<br>${xlabel}${d[chosenXAxis]}`);
       });
       circlesGroup.call(toolTip);
-      circlesGroup
+      textGroup.call(toolTip);
+      textGroup
       .on("mouseover", function(data) {
-          toolTip.show(data);
+          toolTip.show(data)
+          ;
         })
       .on("mouseout", function(data) {
             toolTip.hide(data);
@@ -365,6 +366,8 @@ function makeResponsive() {
       //       .transition().duration(500)
       //       .attr("fill", "red").attr("opacity", ".5").attr('r', 10);
       // });
+
+
       }).catch(function(error) {
     console.log(error);
   });
