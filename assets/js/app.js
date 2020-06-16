@@ -5,10 +5,10 @@ function makeResponsive() {
       svgArea.remove();
     }
   
-  var svgWidth = 960;
-  var svgHeight = 500;
+  var svgWidth = 960*.90;
+  var svgHeight = 500*.90;
   var margin = {
-    top: 20,
+    top: 0,
     right: 40,
     bottom: 80,
     left: 100

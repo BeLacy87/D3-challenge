@@ -69,4 +69,17 @@
   }
 }
 
+#logo{
+  height:5%;
+  width: 5%;
+  }
 
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    /* font-size: 18px; */
+    line-height: 150%;
+    color: #333333;    
+  }
+  

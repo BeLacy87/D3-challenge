@@ -4,50 +4,65 @@
 <head>
   <meta charset="UTF-8">
   <title>D3Times</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/d3Style.css">
 
 </head>
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <img id="logo" src="logo.png">
+  <div class="nav_button ">
+  <a class="navbar-brand mt-0 mb-0 pl-2 pr-2 text-white" href="https://belacy87.github.io/" 
+  style="background-color: rgb(167, 125, 196); font-weight: bold; border-radius: 5px;" >Brent Lacy</a>
+  </div>  
+  <ul class="nav navbar-nav navbar-right ml-5">
+    <li class="nav-item ">
+        <a class="nav-link" href="Lacy_DA_resume_6.10.pdf" target="_blank">Resume <span class="sr-only">(current)</span></a>
+    </li>          
+    <li class="nav-item ">
+      <a class="nav-link" href="mailto:belacy87@gmail.com?Subject=Nice%20webpage!">Email <span class="sr-only">(current)</span></a>
+    </li>  
+    <li class="nav-item ">
+     <a class="nav-link" href="http://www.github.com/belacy87" target="_blank">Github <span class="sr-only">(current)</span></a>
+    </li>  
+    <li class="nav-item ">
+     <a class="nav-link" href="https://www.linkedin.com/in/belacy87/" target="_blank">LinkedIn<span class="sr-only">(current)</span></a>
+    </li>
+</ul>
+</nav>
+
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-md-12">
-        <h1>D3Times</h1>
-      </div>
-    </div>
-    <div class="row">
+
+      <div class="col-md-3 mt-5">
+        <div class="card">
+          <div class="card-header">
+            <h4>Interactive multi-axis scatter plot</h4>
+          </div>
+          <div class="card-body" style="font-size: small;">           
+            <p>Select which two demographics you would like to compare</p>
+            <p>Each marker represents a state</p>
+            <p>Constructed in d3.js</p>
+            <p>Data provided by Coding Boot Camp</p>
+          </div>
+        </div>
+      </div>   
+
       <div class="col-xs-12  col-md-9">
         <div id="scatter">
           <!-- We append our chart here. -->
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12  col-md-9">
-        <div class="article">
-          <h2>Correlations Discovered Between Health Risks and Age, Income</h2>
-          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-            quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-            ultricies mi vitae est. Mauris placerat eleifend leo.</p>
 
-          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-            quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-            ultricies mi vitae est. Mauris placerat eleifend leo.</p>
 
-          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-            quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-            ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-        </div>
-      </div>
-    </div>
+
   </div>
 
   <!-- Footer-->
-  <div id="footer">
-    <p>The Coding Boot Camp&copy;2016</p>
-  </div>
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
